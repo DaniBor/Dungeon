@@ -11,3 +11,5 @@ title: "Typsystem"
 - `IEnvironment` erklären
 
 ## Welche Klassen sind am Typsystem beteiligt?
+
+## Defaultwerte
