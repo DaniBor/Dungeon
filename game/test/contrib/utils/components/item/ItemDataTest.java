@@ -7,13 +7,11 @@ import contrib.configuration.ItemConfig;
 
 import core.Entity;
 import core.Game;
-import core.utils.components.draw.Animation;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.util.List;
 import java.util.function.BiConsumer;
 
 public class ItemDataTest {
@@ -25,34 +23,13 @@ public class ItemDataTest {
     @Test
     public void testDefaultConstructor() {
         ItemData itemData = new ItemData();
-        assertEquals(ItemConfig.NAME.get(), itemData.getItemName());
-        assertEquals(ItemConfig.DESCRIPTION.get(), itemData.getDescription());
-        assertEquals(ItemConfig.TYPE.get(), itemData.getItemType());
-        // assertEquals(ItemData.DEFAULT_WORLD_ANIMATION, itemData.getWorldTexture());
-        // assertEquals(ItemData.DEFAULT_INVENTORY_ANIMATION, itemData.getInventoryTexture());
+        assertEquals(Item.valueOf(ItemConfig.DEFAULT_ITEM.get()), itemData.getItem());
     }
 
     @Test
     public void testParameterConstructor() {
-        ItemType type = ItemType.Basic;
-        String inventoryTexture = "InventoryTexture";
-        String worldTexture = "WorldTexture";
-        String item_name = "r Item Name";
-        String item_description = "r Item Description";
-        ItemData itemData =
-                new ItemData(
-                        type,
-                        new Animation(List.of(inventoryTexture), 1),
-                        new Animation(List.of(worldTexture), 1),
-                        item_name,
-                        item_description);
-
-        assertEquals(type, itemData.getItemType());
-        assertEquals(
-                inventoryTexture, itemData.getInventoryTexture().getNextAnimationTexturePath());
-        assertEquals(worldTexture, itemData.getWorldTexture().getNextAnimationTexturePath());
-        assertEquals(item_name, itemData.getItemName());
-        assertEquals(item_description, itemData.getDescription());
+        ItemData itemData = new ItemData(Item.MUSHROOM_RED);
+        assertEquals(Item.MUSHROOM_RED, itemData.getItem());
     }
 
     // <p> Since we cant update the {@link Game#entities} from outside the gameloop, this is
