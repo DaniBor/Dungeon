@@ -11,7 +11,7 @@ public final class CameraComponent extends Component {
      *
      * @param entity entity which should be the focus point
      */
-    public CameraComponent(Entity entity) {
+    public CameraComponent(final Entity entity) {
         super(entity);
     }
 }
